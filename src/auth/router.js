@@ -39,7 +39,7 @@ authRouter.get('/oauth/fb/code', (req, res, next) => {
   // }
 
   // exchange the code or a token
-  superagent.post(`https://graph.facebook.com/v3.0/oauth/access_token?client_id=1990591931252165&redirect_uri=https://localhost:3000/oauth/fb/code&client_secret=fc5462d99dde853cddfdd5cea61b07cd&code=${code}`)
+  superagent.post(`https://graph.facebook.com/v3.0/oauth/access_token?client_id=1990591931252165&redirect_uri=https://ben-mikey-lab-auth.herokuapp.com/oauth/fb/code&client_secret=fc5462d99dde853cddfdd5cea61b07cd&code=${code}`)
     // .type('form')
     // .send({
     //   code: `${code}`,
