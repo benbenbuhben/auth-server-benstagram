@@ -59,7 +59,7 @@ authRouter.get('/oauth/fb/code', (req, res, next) => {
       return superagent.get('https://graph.facebook.com/me')
         .set('Authorization', `Bearer ${token}`)
         .then(response => {
-          console.log(response);
+          //console.log(response);
           let user = response.text;
           console.log('(3) FB User', user);
           return user;
@@ -79,7 +79,7 @@ authRouter.get('/oauth/fb/code', (req, res, next) => {
       res.redirect(URL);
     })
     .catch(error => {
-      console.log('ERROR', error.message);
+      //console.log('ERROR', error.message);
       next(error);
       // res.redirect(URL);
     });
@@ -87,7 +87,7 @@ authRouter.get('/oauth/fb/code', (req, res, next) => {
 });
 
 authRouter.get('/showMeTheMoney', auth, (req, res, next) => {
-  res.redirect('http://127.0.0.1:8080/main.html');
+  res.redirect('https://ben-mikey-lab-web.herokuapp.com');
   // window.location.href = '../../../web-server/public/main.html';
 });
 
