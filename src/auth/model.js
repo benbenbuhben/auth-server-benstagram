@@ -56,7 +56,7 @@ userSchema.statics.createFromOAuth = function(incoming) {
   return this.findOne({FBid: incoming.id})
     .then(user => {
       if ( ! user ) { throw new Error ('User Not Found'); }
-      console.log('Welcome Back', user.name);
+      console.log('Welcome Back', incoming.name);
       return user;
     })
     .catch( error => {
