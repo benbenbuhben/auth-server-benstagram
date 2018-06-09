@@ -95,6 +95,7 @@ userSchema.statics.authorize = function(token) {
 
 // Compare a plain text password against the hashed one we have saved
 userSchema.methods.comparePassword = function(password) {
+  console.log('HERE"S THE PASSWORD', password);
   return bcrypt.compare(password, this.password)
     .then(valid => valid ? this : null);
 };
