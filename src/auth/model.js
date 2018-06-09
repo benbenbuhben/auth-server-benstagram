@@ -3,6 +3,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+var ObjectId = require('mongodb').ObjectID;
 
 const userSchema = new mongoose.Schema({
   username: {type: String, required: true},
@@ -87,10 +88,10 @@ userSchema.statics.authorize = function(token) {
   console.log('APP_SECRET from statics.authorize', process.env.APP_SECRET);
   let parsedToken = jwt.verify(token, process.env.APP_SECRET || 'changeit');
   //let query = parsedToken.id;
-  let stringifiedquery = JSON.stringify(parsedToken.id);
-  //let JSONquery = query.replace(`'`, `"`);
-  console.log('query from authorize w/id is', stringifiedquery);
-  return this.findById(stringifiedquery)
+  
+  let uId = ObjectId(parsedToken.id);
+  console.log('query from authorize w/id is', uId);
+  return this.findOne({_id:uId})
     .then(user => {
       // looked up their role and then all capabilities
       console.log('user from authorize is', user);
