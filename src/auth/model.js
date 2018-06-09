@@ -83,7 +83,7 @@ userSchema.statics.authenticate = function(auth) {
 };
 
 userSchema.statics.authorize = function(token) {
-  console.log('jakhfbkahjsdvbaskdhjvbhkadsvha', token);
+  console.log('token from statics.authorize', token);
   let parsedToken = jwt.verify(token, process.env.APP_SECRET || 'changeit');
   let query = {_id:parsedToken.id};
   return this.findOne(query)

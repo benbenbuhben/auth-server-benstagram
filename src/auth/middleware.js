@@ -5,16 +5,22 @@ import User from './model.js';
 export default (req, res, next) => {
 
   let authorize = (token) => {
+    console.log('A authorize token', token);
     // Given a token, check with the User model to see if its valid
     User.authorize(token)
       .then(user => {
+        console.log('B authorize user', user);
         // We will always get back a "user" from mongo ... although it might be real and it might be null
-        if(!user) { getAuth(); }
+        if(!user) { 
+          console.log('B1 no user!');
+          getAuth(); }
 
         // Given a real user that must mean that our token was good. Let the user through.
         // in larger systems, you might want to attach an ACL or permissions to the req.user object here.
         else { 
+          
           req.user = user;
+          console.log('C req.user is', req.user);
           next(); }
       })
       .catch(next);
