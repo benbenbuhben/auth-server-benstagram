@@ -87,9 +87,10 @@ userSchema.statics.authorize = function(token) {
   console.log('APP_SECRET from statics.authorize', process.env.APP_SECRET);
   let parsedToken = jwt.verify(token, process.env.APP_SECRET || 'changeit');
   let query = parsedToken.id;
+  let stringifiedquery = JSON.stringify(parsedToken.id);
   let JSONquery = query.replace(`'`, `"`);
-  console.log('query from authorize w/id is', JSONquery);
-  return this.findById(query)
+  console.log('query from authorize w/id is', stringifiedquery);
+  return this.findById(JSONquery)
     .then(user => {
       // looked up their role and then all capabilities
       console.log('user from authorize is', user);
