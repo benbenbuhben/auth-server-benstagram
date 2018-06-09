@@ -76,6 +76,7 @@ userSchema.statics.createFromOAuth = function(incoming) {
 // return the user instance or an error
 userSchema.statics.authenticate = function(auth) {
   let query = {username:auth.username};
+  console.log('authenticate query', query);
   return this.findOne(query)
     .then(user => user && user.comparePassword(auth.password))
     .catch(error => error);
