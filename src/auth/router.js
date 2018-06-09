@@ -87,7 +87,7 @@ authRouter.get('/oauth/fb/code', (req, res, next) => {
 });
 
 authRouter.get('/showMeTheMoney', auth, (req, res, next) => {
-  res.redirect('http://127.0.0.1:8080/main.html');
+  res.redirect('https://ben-mikey-lab-web.herokuapp.com/main.html');
   // window.location.href = '../../../web-server/public/main.html';
 });
 
