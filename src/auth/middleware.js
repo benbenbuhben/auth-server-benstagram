@@ -61,6 +61,7 @@ export default (req, res, next) => {
     let authHeader = req.headers.authorization;
 
     if(!authHeader) {
+      console.log('no auth header!!');
       return getAuth();
     }
 

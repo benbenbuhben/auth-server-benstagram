@@ -84,11 +84,14 @@ userSchema.statics.authenticate = function(auth) {
 
 userSchema.statics.authorize = function(token) {
   console.log('token from statics.authorize', token);
+  console.log('APP_SECRET from statics.authorize', process.env.APP_SECRET);
   let parsedToken = jwt.verify(token, process.env.APP_SECRET || 'changeit');
   let query = {_id:parsedToken.id};
+  console.log('query from authorize w/id is', query);
   return this.findOne(query)
     .then(user => {
       // looked up their role and then all capabilities
+      console.log('user from authenticate is', user);
       return user;
     })
     .catch(error => error);
